@@ -7,4 +7,4 @@
 3. Alec Marchal
 
 ## Project Description:
-Gerard boulanger in france  , data manegement , ... 
+Gerard, a baker living in France, has become too old to take care of the inventory on his own and needs electronic assistance; a basic inventory management.
