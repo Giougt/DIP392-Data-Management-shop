@@ -7,4 +7,4 @@
 3. Alec Marchal
 
 ## Project Description: 
-Gerard, a baker living in France, has become too old to take care of the inventory on his own and needs electronic assistance; a basic inventory management.
+We are currently looking for a customer of the type; grocer, baker, delicatessen, anything close to a small business that is looking for electronic assistance to make the inventory of products, orders and / or notification of lack of a product.
