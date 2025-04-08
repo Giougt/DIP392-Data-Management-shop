@@ -1,9 +1,16 @@
 // import express
 const express = require("express");
-
+//import controller
+const productRoutes = require("./Route/Routes"); 
 
 const app = express();
 const PORT = process.env.PORT || 3000;
+
+
+app.use(express.json());
+
+// Préfixez les routes avec "/api"
+app.use("/products", productRoutes);
 
 
 app.use(express.static("src/public"));  

@@ -1,3 +1,8 @@
+CREATE DATABASE BakeryManagement;
+
+-- Use the Database
+USE BakeryManagement;
+
 -- SQL Query for Products Table
 CREATE TABLE Bakery_Products (
     id INT AUTO_INCREMENT PRIMARY KEY,

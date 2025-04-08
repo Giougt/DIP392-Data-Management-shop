@@ -1,5 +1,5 @@
 const { Model, DataTypes } = require("sequelize");
-const connection = require("/models/db"); 
+const connection = require("../models/db"); 
 
 /* one models per page*/
 
@@ -13,14 +13,20 @@ Products.init(
         product_name: { 
             type: DataTypes.STRING,
             allowNull: false,
+            validate: {
+                len: [3, 100],
+            },
         },
         category: { 
             type: DataTypes.ENUM("Bread", "Pastry", "Patisserie", "Snack"),
-            allowNull: false,
+            allowNull: true,
         },
         price: { 
             type: DataTypes.FLOAT,
             allowNull: false,
+            validate: {
+                min: 0, // for price never -0
+            },
         },
         ingredients: { 
             type: DataTypes.TEXT,
@@ -28,7 +34,8 @@ Products.init(
         },
         productionDate: { 
             type: DataTypes.DATE,
-            allowNull: false,
+            allowNull: true,
+            defaultValue: DataTypes.NOW, // Valeur par défaut
         },
         expirationDate: { 
             type: DataTypes.DATE,
@@ -46,7 +53,6 @@ Products.init(
         timestamps: true, 
     }
 );
-
 
 /*model for stocks*/
 class Stock extends Model {}
@@ -167,3 +173,15 @@ Money.init(
 
 
 module.exports = {Products, Stock, Order, Money};
+
+
+(async () => {
+    try {
+        await sequelize.authenticate();
+        console.log('Connection à la base de données réussie !');
+        await sequelize.sync({ alter: true });
+        console.log('Base de données synchronisée.');
+    } catch (error) {
+        console.error('Erreur de connexion ou de synchronisation :', error);
+    }
+})();

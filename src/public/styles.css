@@ -1,79 +1,130 @@
-/* Style général */
+/* styles.css */
+
 body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f8f3e4;
+    background-color: #f8f9fa;
     color: #333;
 }
 
-/* Navbar du haut */
-.top-navbar {
-    background-color: #d4a373;
-    padding: 10px 0;
+header {
+    background-color: #ffae42;
+    padding: 20px;
     text-align: center;
-    position: fixed; /* Fixe la navbar en haut */
-    top: 0; /* Place à la position top */
-    width: 100%; /* Occupe toute la largeur */
-    z-index: 1000; /* S'assure que la navbar reste au-dessus des autres éléments */
+    color: #fff;
+}
+
+h1 {
+    margin: 0;
+    font-size: 2rem;
+}
+
+main {
+    padding: 20px;
+}
+
+section {
+    margin-bottom: 30px;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+    font-size: 1.5rem;
+    color: #ffae42;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+input, button {
+    margin-bottom: 15px;
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+button {
+    background-color: #ffae42;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #e69539;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+thead {
+    background-color: #ffae42;
+    color: #fff;
+}
+
+th, td {
+    padding: 10px;
+    border: 1px solid #ddd;
+    text-align: left;
+}
+
+tbody tr:nth-child(even) {
+    background-color: #f1f1f1;
+}
+
+footer {
+    text-align: center;
+    padding: 10px;
+    background-color: #ffae42;
+    color: #fff;
+}
+
+
+/* Navigation Bar Styles */
+.top-navbar {
+    background-color: #ffae42;
+    padding: 10px 20px;
+    text-align: center;
 }
 
 .top-navbar ul {
     list-style-type: none;
-    padding: 0;
     margin: 0;
-}
-
-.top-navbar li {
-    display: inline;
-    margin: 0 15px;
-}
-
-.top-navbar a {
-    text-decoration: none;
-    color: white;
-    font-weight: bold;
-}
-
-/* Section principale */
-main {
-    text-align: center;
-    padding: 80px 20px; /* Ajout de padding pour éviter que le contenu ne soit caché par la navbar fixe */
-}
-
-main h1 {
-    color: #d4a373;
-}
-
-/* Navbar du bas */
-.bottom-navbar {
-    background-color: #d4a373;
-    padding: 10px 0;
-    text-align: center;
-    position: fixed; /* Fixe la navbar en bas */
-    bottom: 0; /* Place à la position bottom */
-    width: 100%; /* Occupe toute la largeur */
-    z-index: 1000; /* S'assure que la navbar reste au-dessus des autres éléments */
-}
-
-.bottom-navbar ul {
-    list-style-type: none;
     padding: 0;
-    margin: 0;
+    display: flex;
+    justify-content: center;
+    gap: 20px; /* Espacement entre les liens */
 }
 
-.bottom-navbar li {
+.top-navbar ul li {
     display: inline;
-    margin: 0 15px;
 }
 
-.bottom-navbar a {
+.top-navbar ul li a {
     text-decoration: none;
-    color: white;
     font-weight: bold;
+    color: #fff;
+    padding: 10px 20px;
+    transition: background-color 0.3s, color 0.3s;
+    border-radius: 5px;
 }
 
-/* Footer */
-footer {
-    margin-top: 20px;
+.top-navbar ul li a:hover {
+    background-color: #e69539;
+    color: #000;
 }
