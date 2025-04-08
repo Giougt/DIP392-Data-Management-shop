@@ -16,7 +16,6 @@ document.getElementById("add-product-form").addEventListener("submit", async (ev
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(productData),
         });
-
         if (response.ok) {
             alert("Product added successfully!");
             event.target.reset();
@@ -28,3 +27,25 @@ document.getElementById("add-product-form").addEventListener("submit", async (ev
         alert("An error occurred.");
     }
 });
+
+
+async function fetchProducts() {
+    try {
+        const response = await fetch("http://localhost:3000/products", {
+            method: "GET",
+            headers: { "Content-Type": "application/json" }
+        });
+
+        if (response.ok) {
+            const products = await response.json();
+            console.log("Product catch :", products);
+        } else {
+            console.error("Error get products.");
+        }
+    } catch (error) {
+        console.error("Error request:", error);
+    }
+}
+
+// call function 
+fetchProducts();

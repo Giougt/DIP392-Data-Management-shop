@@ -9,7 +9,7 @@ const PORT = process.env.PORT || 3000;
 
 app.use(express.json());
 
-// Préfixez les routes avec "/api"
+// route for api
 app.use("/products", productRoutes);
 
 
@@ -19,7 +19,20 @@ app.get("/", (req, res) => {
     res.sendFile(__dirname + "/src/public/index.html"); 
 });
 
-// 6. Démarrer le serveur sur le port spécifié
+// GET all data products
+app.get("/products", (req, res) => {
+    const query = "SELECT * FROM Bakery_Products";
+    db.query(query, (err, results) => {
+        if (err) {
+            console.error("Error catch products :", err);
+            res.status(500).json({ error: "Error Server" });
+        } else {
+            res.status(200).json(results);
+        }
+    });
+});
+
+// start server
 app.listen(PORT, () => {
     console.log(` Start server on http://localhost:${PORT}`);
 });
