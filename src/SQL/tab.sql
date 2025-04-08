@@ -1,10 +1,10 @@
-CREATE DATABASE BakeryManagement;
+CREATE DATABASE IF NOT EXISTS BakeryManagement;
 
 -- Use the Database
 USE BakeryManagement;
 
 -- SQL Query for Products Table
-CREATE TABLE Bakery_Products (
+CREATE TABLE IF NOT EXISTS Bakery_Products (
     id INT AUTO_INCREMENT PRIMARY KEY,
     product_name VARCHAR(255) NOT NULL,
     category ENUM('Bread', 'Pastry', 'Patisserie', 'Snack') NOT NULL,
@@ -18,7 +18,7 @@ CREATE TABLE Bakery_Products (
 
 
 -- SQL Query for Stock Table
-CREATE TABLE Stock (
+CREATE TABLE  IF NOT EXISTS Stock (
     id INT AUTO_INCREMENT PRIMARY KEY,
     product_id INT NOT NULL,
     quantity INT NOT NULL DEFAULT 0,
@@ -30,7 +30,7 @@ CREATE TABLE Stock (
 
 
 -- SQL Query for Orders Table
-CREATE TABLE Orders (
+CREATE TABLE IF NOT EXISTS Orders (
     id INT AUTO_INCREMENT PRIMARY KEY,
     customer_name VARCHAR(255) NULL,
     product_id INT NOT NULL,
@@ -43,7 +43,7 @@ CREATE TABLE Orders (
 );
 
 -- SQL Query for Money_Transactions Table
-CREATE TABLE Money_Transactions (
+CREATE TABLE  IF NOT EXISTS Money_Transactions (
     id INT AUTO_INCREMENT PRIMARY KEY,
     transaction_type ENUM('Income', 'Expense') NOT NULL,
     amount FLOAT NOT NULL,
@@ -52,3 +52,5 @@ CREATE TABLE Money_Transactions (
     createdAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updatedAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
+
+	select * from Bakery_Products
