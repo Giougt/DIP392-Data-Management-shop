@@ -135,7 +135,7 @@ Order.init(
 );
 
 
-/* (option)model for money*/
+/* model for money*/
 
 class Money extends Model {}
 
@@ -178,10 +178,10 @@ module.exports = {Products, Stock, Order, Money};
 (async () => {
     try {
         await sequelize.authenticate();
-        console.log('Connection à la base de données réussie !');
+        console.log('Sucess connection to database !');
         await sequelize.sync({ alter: true });
-        console.log('Base de données synchronisée.');
+        console.log('Database sync.');
     } catch (error) {
-        console.error('Erreur de connexion ou de synchronisation :', error);
+        console.error('Error connexion  :', error);
     }
 })();

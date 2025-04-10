@@ -72,7 +72,7 @@
       <table>
         <thead>
           <tr>
-            <th>Product</th>
+            <th>Product name</th>
             <th>Category</th>
             <th>Price (€)</th>
             <th>Ingredients</th>
@@ -86,23 +86,23 @@
       </table>
     </section>
   </main>
-  <!-- test style research -->
+  <!-- section delete -->
   <section>
-    <h2>Rechercher un produit</h2>
-    <form id="searchForm">
-      <label for="searchType">Rechercher par :</label>
-      <select id="searchType" name="searchType">
+    <h2>Delete product</h2>
+    <form id="deleteForm">
+      <label for="deleteType">Delete with :</label>
+      <select id="deleteType" name="deleteType">
         <option value="id">ID</option>
-        <option value="name">Nom</option>
+        <option value="name">Name</option>
       </select>
   
-      <label for="searchQuery">Valeur :</label>
-      <input type="text" id="searchQuery" name="searchQuery" placeholder="Entrez l'ID ou le nom du produit">
+      <label for="deleteQuery">Value :</label>
+      <input type="text" id="deleteQuery" name="deleteQuery" placeholder="Enter ID ou name of product">
   
-      <button type="submit">Rechercher</button>
+      <button type="submit">Delete</button>
     </form>
   
-    <div id="searchResult" style="margin-top: 20px;"></div>
+    <div id="deleteResult" style="margin-top: 20px;"></div>
   </section>
 
   <!-- Footer -->

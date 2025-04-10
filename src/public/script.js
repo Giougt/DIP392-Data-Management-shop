@@ -1,3 +1,44 @@
+// GET and display products
+async function fetchProducts() {
+    try {
+        const response = await fetch("http://localhost:3000/products", {
+            method: "GET",
+            headers: { "Content-Type": "application/json" }
+        });
+
+        if (response.ok) {
+            const products = await response.json();
+            console.log("Product catch :", products);
+
+            const tableBody = document.querySelector("#inventory tbody");
+            tableBody.innerHTML = ""; // Clear old rows
+
+            products.forEach(product => {
+                const row = document.createElement("tr");
+
+                row.innerHTML = `
+                    <td>${product.product_name || "-"}</td>
+                    <td>${product.category || "-"}</td>
+                    <td>${product.price || "-"}</td>
+                    <td>${product.ingredients || "-"}</td>
+                    <td>${product.productionDate || "-"}</td>
+                    <td>${product.expirationDate || "-"}</td>
+                `;
+
+                tableBody.appendChild(row);
+            });
+        } else {
+            console.error("Error get products.");
+        }
+    } catch (error) {
+        console.error("Error request:", error);
+    }
+}
+
+// Call function for data
+fetchProducts();
+
+// add new product
 document.getElementById("add-product-form").addEventListener("submit", async (event) => {
     event.preventDefault();
 
@@ -18,6 +59,8 @@ document.getElementById("add-product-form").addEventListener("submit", async (ev
         });
         if (response.ok) {
             alert("Product added successfully!");
+            // reload data in inventory
+            fetchProducts();
             event.target.reset();
         } else {
             alert("Failed to add the product.");
@@ -27,43 +70,3 @@ document.getElementById("add-product-form").addEventListener("submit", async (ev
         alert("An error occurred.");
     }
 });
-
-// GET and display products
-async function fetchProducts() {
-    try {
-        const response = await fetch("http://localhost:3000/products", {
-            method: "GET",
-            headers: { "Content-Type": "application/json" }
-        });
-
-        if (response.ok) {
-            const products = await response.json();
-            console.log("Product catch :", products);
-
-            const tableBody = document.querySelector("#inventory tbody");
-            tableBody.innerHTML = ""; // Clear old rows
-
-            products.forEach(product => {
-                const row = document.createElement("tr");
-
-                row.innerHTML = `
-                    <td>${product.name || "-"}</td>
-                    <td>${product.category || "-"}</td>
-                    <td>${product.price || "-"}</td>
-                    <td>${product.ingredients || "-"}</td>
-                    <td>${product.productionDate || "-"}</td>
-                    <td>${product.expirationDate || "-"}</td>
-                `;
-
-                tableBody.appendChild(row);
-            });
-        } else {
-            console.error("Error get products.");
-        }
-    } catch (error) {
-        console.error("Error request:", error);
-    }
-}
-
-// Call the function on page load
-fetchProducts();

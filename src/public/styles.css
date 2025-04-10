@@ -108,7 +108,7 @@ footer {
     padding: 0;
     display: flex;
     justify-content: center;
-    gap: 20px; /* Espacement entre les liens */
+    gap: 20px;
 }
 
 .top-navbar ul li {
@@ -129,14 +129,14 @@ footer {
     color: #000;
 }
 
-
-#searchType, #category {
+#deleteType, #category {
     width: 200px; 
     padding: 10px; 
     font-size: 13px; 
     border: 1px solid #ccc; 
     border-radius: 5px; 
 }
+
 label {
     font-size: 18px; 
     margin-right: 10px;

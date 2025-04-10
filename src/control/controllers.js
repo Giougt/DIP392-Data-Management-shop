@@ -1,11 +1,11 @@
-const { Products } = require("../models/models_data"); // Assurez-vous d'avoir exporté le modèle Products
+const { Products } = require("../models/models_data"); 
 
-// Fonction pour ajouter un produit (route POST)
+// function for add product POST
 exports.post = async (req, res, next) => {
     try {
         const { product_name, category, price, ingredients, productionDate, expirationDate } = req.body;
 
-        // Créer un nouveau produit dans la base de données
+        // create new product database
         const newProduct = await Products.create({
             product_name,
             category,
@@ -15,7 +15,7 @@ exports.post = async (req, res, next) => {
             expirationDate,
         });
 
-        // Répondre avec un message de succès et le produit créé
+        // Response with message and product
         res.status(201).json({
             message: "Product added successfully!",
             product: newProduct,
@@ -29,18 +29,18 @@ exports.post = async (req, res, next) => {
     }
 };
 
-// Fonction pour récupérer tous les produits (route GET)
+// function get all products
 exports.getAll = async (req, res, next) => {
     try {
-        // Récupérer tous les produits dans la base de données
+        // GET all products database
         const products = await Products.findAll();
 
-        // Répondre avec les produits
+        // Response with all products
         res.status(200).json(products);
     } catch (error) {
         console.error(error);
         res.status(500).json({
-            message: "Failed to retrieve products.",
+            message: "Failed to retrieve all products.",
             error: error.message,
         });
     }
@@ -49,11 +49,11 @@ exports.getAll = async (req, res, next) => {
 //function id only one products 
 exports.getId = async (req, res, next) => {
     try {
-        // Récupérer tous les produits dans la base de données
-        const productId = req.params.id; // Récupérer l'ID depuis les paramètres de la requête
+        // select id
+         const productId = req.params.id; // Get id from research 
         const product = await Products.findByPk(productId);
 
-        // Répondre avec les produits
+        // Response with products
         res.status(200).json(product);
     } catch (error) {
         console.error(error);
