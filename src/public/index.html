@@ -86,6 +86,24 @@
       </table>
     </section>
   </main>
+  <!-- test style research -->
+  <section>
+    <h2>Rechercher un produit</h2>
+    <form id="searchForm">
+      <label for="searchType">Rechercher par :</label>
+      <select id="searchType" name="searchType">
+        <option value="id">ID</option>
+        <option value="name">Nom</option>
+      </select>
+  
+      <label for="searchQuery">Valeur :</label>
+      <input type="text" id="searchQuery" name="searchQuery" placeholder="Entrez l'ID ou le nom du produit">
+  
+      <button type="submit">Rechercher</button>
+    </form>
+  
+    <div id="searchResult" style="margin-top: 20px;"></div>
+  </section>
 
   <!-- Footer -->
   <footer>

@@ -28,7 +28,7 @@ document.getElementById("add-product-form").addEventListener("submit", async (ev
     }
 });
 
-
+// GET and display products
 async function fetchProducts() {
     try {
         const response = await fetch("http://localhost:3000/products", {
@@ -39,6 +39,24 @@ async function fetchProducts() {
         if (response.ok) {
             const products = await response.json();
             console.log("Product catch :", products);
+
+            const tableBody = document.querySelector("#inventory tbody");
+            tableBody.innerHTML = ""; // Clear old rows
+
+            products.forEach(product => {
+                const row = document.createElement("tr");
+
+                row.innerHTML = `
+                    <td>${product.name || "-"}</td>
+                    <td>${product.category || "-"}</td>
+                    <td>${product.price || "-"}</td>
+                    <td>${product.ingredients || "-"}</td>
+                    <td>${product.productionDate || "-"}</td>
+                    <td>${product.expirationDate || "-"}</td>
+                `;
+
+                tableBody.appendChild(row);
+            });
         } else {
             console.error("Error get products.");
         }
@@ -47,5 +65,5 @@ async function fetchProducts() {
     }
 }
 
-// call function 
+// Call the function on page load
 fetchProducts();

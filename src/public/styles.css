@@ -128,3 +128,16 @@ footer {
     background-color: #e69539;
     color: #000;
 }
+
+
+#searchType, #category {
+    width: 200px; 
+    padding: 10px; 
+    font-size: 13px; 
+    border: 1px solid #ccc; 
+    border-radius: 5px; 
+}
+label {
+    font-size: 18px; 
+    margin-right: 10px;
+}
