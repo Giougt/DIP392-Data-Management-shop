@@ -30,7 +30,7 @@ exports.post = async (req, res, next) => {
 };
 
 // Fonction pour récupérer tous les produits (route GET)
-exports.get = async (req, res, next) => {
+exports.getAll = async (req, res, next) => {
     try {
         // Récupérer tous les produits dans la base de données
         const products = await Products.findAll();
@@ -45,3 +45,23 @@ exports.get = async (req, res, next) => {
         });
     }
 };
+
+//function id only one products 
+exports.getId = async (req, res, next) => {
+    try {
+        // Récupérer tous les produits dans la base de données
+        const productId = req.params.id; // Récupérer l'ID depuis les paramètres de la requête
+        const product = await Products.findByPk(productId);
+
+        // Répondre avec les produits
+        res.status(200).json(product);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({
+            message: "Failed to retrieve products.",
+            error: error.message,
+        });
+    }
+};
+
+

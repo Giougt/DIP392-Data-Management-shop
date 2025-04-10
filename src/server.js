@@ -12,7 +12,6 @@ app.use(express.json());
 // route for api
 app.use("/products", productRoutes);
 
-
 app.use(express.static("src/public"));  
 
 app.get("/", (req, res) => {
@@ -28,6 +27,23 @@ app.get("/products", (req, res) => {
             res.status(500).json({ error: "Error Server" });
         } else {
             res.status(200).json(results);
+        }
+    });
+});
+
+// GET one product by ID
+app.get("/products", (req, res) => {
+    const productId = req.params.id; // Récupère l'ID depuis les paramètres de l'URL
+    const query = "SELECT * FROM Bakery_Products WHERE id = ?"; // Requête SQL avec l'ID en paramètre
+
+    db.query(query, [productId], (err, results) => {
+        if (err) {
+            console.error("Error fetching product by ID:", err);
+            res.status(500).json({ error: "Error Server" });
+        } else if (results.length === 0) {
+            res.status(404).json({ error: "Product not found" }); // Retourne une erreur si aucun produit ne correspond
+        } else {
+            res.status(200).json(results[0]); // Retourne le produit spécifique
         }
     });
 });
