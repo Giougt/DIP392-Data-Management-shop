@@ -42,7 +42,7 @@ content-type: application/json
 GET http://localhost:3000/products/1
 
 ###
-GET http://localhost:3000/Bakery_Products/1
+GET http://localhost:3000/products/2
 
 ###
 GET http://localhost:3000/products/3
