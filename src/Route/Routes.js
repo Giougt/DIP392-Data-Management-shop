@@ -13,9 +13,9 @@ router.delete("/delete-product", async (req, res) => {
     try {
       await eventController.deleteProduct(req, res);
     } catch (error) {
-      // Si l'appel à deleteProduct échoue, on envoie une erreur générique
-      console.error("Erreur lors de la suppression:", error);
-      res.status(500).json({ error: "Erreur interne du serveur" });
+      // send error 
+      console.error("Error in delete :", error);
+      res.status(500).json({ error: "Error server" });
     }
   });
 

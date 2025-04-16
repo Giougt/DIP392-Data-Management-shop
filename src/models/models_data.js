@@ -173,15 +173,3 @@ Money.init(
 
 
 module.exports = {Products, Stock, Order, Money};
-
-
-(async () => {
-    try {
-        await sequelize.authenticate();
-        console.log('Sucess connection to database !');
-        await sequelize.sync({ alter: true });
-        console.log('Database sync.');
-    } catch (error) {
-        console.error('Error connexion  :', error);
-    }
-})();

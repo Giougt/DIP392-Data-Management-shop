@@ -67,25 +67,44 @@ exports.getId = async (req, res, next) => {
 
 //DELETE one products
 exports.deleteProduct = async (req, res) => {
-    const { deleteType, deleteQuery } = req.body;
+    let { deleteType, deleteQuery } = req.body;
   
-    console.log("Reçu pour suppression:", req.body); // pour debug
+    console.log("Reçu pour suppression:", req.body, typeof deleteQuery); // Debug
   
     try {
+      // Vérifie que les champs sont présents
       if (!deleteType || !deleteQuery) {
         return res.status(400).json({ error: "Champs manquants" });
       }
   
-      const allowedFields = ["id", "product_name"];
-      if (!allowedFields.includes(deleteType)) {
+      // Mapping des champs valides côté client → champ en base de données
+      const fieldMap = {
+        id: "id",
+        name: "product_name", // "name" est le nom reçu du front
+      };
+  
+      // Vérifie que le champ demandé est autorisé
+      if (!fieldMap[deleteType]) {
         return res.status(400).json({ error: "Champ de suppression invalide" });
       }
   
+      const dbField = fieldMap[deleteType];
+  
+      // Conversion du type si nécessaire
+      if (dbField === "id") {
+        deleteQuery = parseInt(deleteQuery, 10);
+        if (isNaN(deleteQuery)) {
+          return res.status(400).json({ error: "L'id doit être un nombre" });
+        }
+      } else {
+        deleteQuery = String(deleteQuery).trim();
+      }
+  
       const condition = {};
-      condition[deleteType] = deleteQuery;
+      condition[dbField] = deleteQuery;
       console.log("Condition de suppression:", condition);
   
-      // Attente de la promesse pour la suppression du produit
+      // delete product
       const result = await Products.destroy({ where: condition });
       console.log("Résultat de la suppression:", result);
   
@@ -94,10 +113,10 @@ exports.deleteProduct = async (req, res) => {
       }
   
       return res.status(200).json({ message: "Produit supprimé avec succès" });
+  
     } catch (error) {
       console.error("Erreur suppression:", error);
       return res.status(500).json({ error: "Erreur serveur" });
     }
   };
   
-

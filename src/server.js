@@ -54,9 +54,6 @@ app.get("/products", (req, res) => {
 });
 
 
-// DELETE one product
-
-
 // start server
 app.listen(PORT, () => {
     console.log(` Start server on http://localhost:${PORT}`);
