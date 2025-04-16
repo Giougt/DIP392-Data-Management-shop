@@ -70,3 +70,30 @@ document.getElementById("add-product-form").addEventListener("submit", async (ev
         alert("An error occurred.");
     }
 });
+
+// DELETE one product
+document.getElementById("button_delete").addEventListener("click", async () => {
+  const deleteType = document.getElementById("deleteType").value.trim();
+  const deleteQuery = document.getElementById("deleteQuery").value.trim();
+
+  try {
+    const response = await fetch("/products/delete-product", {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ deleteType, deleteQuery }),
+    });
+
+    if (!response.ok) {
+      const err = await response.json();
+      throw new Error(err.error || "Erreur lors de la suppression");
+    }
+
+    const data = await response.json();
+    alert(data.message || "Produit supprimé !");
+  } catch (error) {
+    console.error("Erreur:", error.message);
+    alert(error.message);
+  }
+});
