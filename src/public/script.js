@@ -17,6 +17,7 @@ async function fetchProducts() {
                 const row = document.createElement("tr");
 
                 row.innerHTML = `
+                    <td>${product.id || "-"}</td>
                     <td>${product.product_name || "-"}</td>
                     <td>${product.category || "-"}</td>
                     <td>${product.price || "-"}</td>

@@ -1,6 +1,5 @@
 const { Products } = require("../models/models_data"); 
 
-
 // function for add product POST
 exports.post = async (req, res, next) => {
     try {
