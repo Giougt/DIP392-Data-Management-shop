@@ -5,6 +5,8 @@ const productRoutes = require("./Route/Routes");
 const bodyParser = require('body-parser');
 //import sequelize
 const sequelize = require("./models/db");
+// import path 
+const path = require("path");
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -16,10 +18,17 @@ app.use(bodyParser.urlencoded({ extended: true }));
 // route for api
 app.use("/products", productRoutes);
 
+
+// route for login 
+app.get("/", (req, res) => {
+    res.sendFile(path.join(__dirname, "/public/login.html"));
+});
+
 app.use(express.static("src/public"));  
 
-app.get("/", (req, res) => {
-    res.sendFile(__dirname + "/src/public/index.html"); 
+// Route pour l'accueil
+app.get("/index", (req, res) => {
+    res.sendFile(path.join(__dirname, "/public/index.html"));
 });
 
 
