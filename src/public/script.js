@@ -75,7 +75,8 @@ document.getElementById("add-product-form").addEventListener("submit", async (ev
 });
 
 // DELETE one product
-document.getElementById("button_delete").addEventListener("click", async () => {
+document.getElementById("button_delete").addEventListener("click", async (event) => {
+  event.preventDefault();
   const deleteType = document.getElementById("deleteType").value.trim();
   const deleteQuery = document.getElementById("deleteQuery").value.trim();
 
@@ -95,6 +96,10 @@ document.getElementById("button_delete").addEventListener("click", async () => {
 
     const data = await response.json();
     alert(data.message || "Sucess delete product !");
+    // update data 
+    fetchProducts();
+    // reset form delete
+    document.getElementById("deleteForm").reset();
   } catch (error) {
     console.error("Error:", error.message);
     alert(error.message);
@@ -102,8 +107,8 @@ document.getElementById("button_delete").addEventListener("click", async () => {
 });
 
 // update product
-document.getElementById("button_update").addEventListener("click", async (e) => {
-  e.preventDefault();
+document.getElementById("button_update").addEventListener("click", async (event) => {
+  event.preventDefault();
     const updateType = document.getElementById("updateType").value.trim();
     const updateQuery = document.getElementById("updateQuery").value.trim();
     const quantity = document.getElementById("new_quantity").value.trim(); 
@@ -119,11 +124,11 @@ document.getElementById("button_update").addEventListener("click", async (e) => 
   
       if (!response.ok) {
         const err = await response.json();
-        throw new Error(err.error || "Erreur lors de la mise à jour");
+        throw new Error(err.error || "Error in update");
       }
   
       const data = await response.json();
-      alert(data.message || "Produit mis à jour !");
+      alert(data.message || "Product update!");
       // update data 
       fetchProducts();
       // reset form update

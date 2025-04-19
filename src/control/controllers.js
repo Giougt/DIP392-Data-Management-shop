@@ -74,29 +74,29 @@ exports.deleteProduct = async (req, res) => {
     console.log("Reçu pour suppression:", req.body, typeof deleteQuery); // Debug
   
     try {
-      // Vérifie que les champs sont présents
+      // check field is not empty
       if (!deleteType || !deleteQuery) {
-        return res.status(400).json({ error: "Champs manquants" });
+        return res.status(400).json({ error: "Field empty" });
       }
   
-      // Mapping des champs valides côté client → champ en base de données
+      // link frontend and backend name
       const fieldMap = {
         id: "id",
-        name: "product_name", // "name" est le nom reçu du front
+        name: "product_name", 
       };
   
-      // Vérifie que le champ demandé est autorisé
+      // check field is valid 
       if (!fieldMap[deleteType]) {
-        return res.status(400).json({ error: "Champ de suppression invalide" });
+        return res.status(400).json({ error: "Field delete incorrect" });
       }
   
       const dbField = fieldMap[deleteType];
   
-      // Conversion du type si nécessaire
+      // Convert type js
       if (dbField === "id") {
         deleteQuery = parseInt(deleteQuery, 10);
         if (isNaN(deleteQuery)) {
-          return res.status(400).json({ error: "L'id doit être un nombre" });
+          return res.status(400).json({ error: "ID must be a integer" });
         }
       } else {
         deleteQuery = String(deleteQuery).trim();
@@ -104,21 +104,21 @@ exports.deleteProduct = async (req, res) => {
   
       const condition = {};
       condition[dbField] = deleteQuery;
-      console.log("Condition de suppression:", condition);
+      console.log("Deletion condition:", condition);
   
       // delete product
       const result = await Products.destroy({ where: condition });
-      console.log("Résultat de la suppression:", result);
+      console.log("Result of deletion:", result);
   
       if (result === 0) {
-        return res.status(404).json({ message: "Produit non trouvé" });
+        return res.status(404).json({ message: "Product not find " });
       }
   
-      return res.status(200).json({ message: "Produit supprimé avec succès" });
+      return res.status(200).json({ message: "Product delete with sucess" });
   
     } catch (error) {
-      console.error("Erreur suppression:", error);
-      return res.status(500).json({ error: "Erreur serveur" });
+      console.error("Error delete:", error);
+      return res.status(500).json({ error: "Error server" });
     }
   };
   
@@ -128,11 +128,11 @@ exports.updateProduct = async (req, res) => {
   let updateQuery = req.body.updateQuery || req.query.updateQuery;
   let quantity = req.body.quantity;
 
-  console.log("Reçu pour mise à jour:", req.body, typeof updateQuery);
+  console.log("Get for update:", req.body, typeof updateQuery);
 
   try {
     if (!updateType || !updateQuery || quantity === undefined) {
-      return res.status(400).json({ error: "Champs manquants" });
+      return res.status(400).json({ error: "Field are missing" });
     }
 
     const fieldMap = {
@@ -141,7 +141,7 @@ exports.updateProduct = async (req, res) => {
     };
 
     if (!fieldMap[updateType]) {
-      return res.status(400).json({ error: "Champ de mise à jour invalide" });
+      return res.status(400).json({ error: "Field for update incorrect" });
     }
 
     const dbField = fieldMap[updateType];
@@ -149,7 +149,7 @@ exports.updateProduct = async (req, res) => {
     if (dbField === "id") {
       updateQuery = parseInt(updateQuery, 10);
       if (isNaN(updateQuery)) {
-        return res.status(400).json({ error: "L'id doit être un nombre" });
+        return res.status(400).json({ error: "ID must be integer" });
       }
     } else {
       updateQuery = String(updateQuery).trim();
@@ -157,7 +157,7 @@ exports.updateProduct = async (req, res) => {
 
     quantity = parseInt(quantity, 10);
     if (isNaN(quantity)) {
-      return res.status(400).json({ error: "La quantité doit être un nombre" });
+      return res.status(400).json({ error: "Quantity must be a number" });
     }
 
     const condition = {};
@@ -169,13 +169,13 @@ exports.updateProduct = async (req, res) => {
     );
 
     if (updatedCount === 0) {
-      return res.status(404).json({ message: "Produit non trouvé ou déjà à jour" });
+      return res.status(404).json({ message: "Product not find or already update" });
     }
 
-    return res.status(200).json({ message: "Quantité mise à jour avec succès" });
+    return res.status(200).json({ message: "Quantity update with sucess" });
 
   } catch (error) {
-    console.error("Erreur mise à jour:", error);
-    return res.status(500).json({ error: "Erreur serveur" });
+    console.error("Error in update:", error);
+    return res.status(500).json({ error: "Error server" });
   }
 };
