@@ -122,3 +122,60 @@ exports.deleteProduct = async (req, res) => {
     }
   };
   
+// UPDATE product
+exports.updateProduct = async (req, res) => {
+  const updateType = req.body.updateType || req.query.updateType;
+  let updateQuery = req.body.updateQuery || req.query.updateQuery;
+  let quantity = req.body.quantity;
+
+  console.log("Reçu pour mise à jour:", req.body, typeof updateQuery);
+
+  try {
+    if (!updateType || !updateQuery || quantity === undefined) {
+      return res.status(400).json({ error: "Champs manquants" });
+    }
+
+    const fieldMap = {
+      id: "id",
+      name: "product_name",
+    };
+
+    if (!fieldMap[updateType]) {
+      return res.status(400).json({ error: "Champ de mise à jour invalide" });
+    }
+
+    const dbField = fieldMap[updateType];
+
+    if (dbField === "id") {
+      updateQuery = parseInt(updateQuery, 10);
+      if (isNaN(updateQuery)) {
+        return res.status(400).json({ error: "L'id doit être un nombre" });
+      }
+    } else {
+      updateQuery = String(updateQuery).trim();
+    }
+
+    quantity = parseInt(quantity, 10);
+    if (isNaN(quantity)) {
+      return res.status(400).json({ error: "La quantité doit être un nombre" });
+    }
+
+    const condition = {};
+    condition[dbField] = updateQuery;
+
+    const [updatedCount] = await Products.update(
+      { quantity },
+      { where: condition }
+    );
+
+    if (updatedCount === 0) {
+      return res.status(404).json({ message: "Produit non trouvé ou déjà à jour" });
+    }
+
+    return res.status(200).json({ message: "Quantité mise à jour avec succès" });
+
+  } catch (error) {
+    console.error("Erreur mise à jour:", error);
+    return res.status(500).json({ error: "Erreur serveur" });
+  }
+};

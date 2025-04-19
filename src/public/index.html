@@ -59,13 +59,19 @@
     <section id="update-stock">
       <h2>Update Stock</h2>
       <form id="update-stock-form">
-        <label for="update-product">Product:</label>
-        <input type="text" id="update-product" name="update-product" required />
+        <label for="updateType">Select product with:</label>
+        <select id="updateType" name="update-product" required>
+          <option value="id">ID</option>
+          <option value="name">Name</option>
+        </select>
 
-        <label for="update-quantity">New Quantity:</label>
-        <input type="number" id="update-quantity" name="update-quantity" min="0" required />
+      <label for="updateQuery">ID or Name of product:</label>
+      <input type="text" id="updateQuery" name="updateQuery" required />
 
-        <button type="submit">Update</button>
+      <label for="quantity">New Quantity:</label>
+      <input type="number" id="new_quantity" name="quantity" min="0" required />
+
+<button id="button_update">Update Product</button>
       </form>
     </section>
 

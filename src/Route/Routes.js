@@ -17,5 +17,15 @@ router.delete("/delete-product", async (req, res) => {
       res.status(500).json({ error: "Error server" });
     }
   });
+//route for update product
+router.put("/update-product", async (req, res) => {
+  try {
+    await eventController.updateProduct(req, res);
+  } catch (error) {
+    // send error 
+    console.error("Error in update :", error);
+    res.status(500).json({ error: "Error server" });
+  }
+});
 
 module.exports = router;

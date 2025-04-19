@@ -22,7 +22,7 @@ async function fetchProducts() {
                     <td>${product.category || "-"}</td>
                     <td>${product.price || "-"}</td>
                     <td>${product.ingredients || "-"}</td>
-                    <td>${product.quantity || "-"}</td>
+                    <td>${product.quantity || "0"}</td>
                     <td>${product.productionDate || "-"}</td>
                     <td>${product.expirationDate || "-"}</td>
                 `;
@@ -90,13 +90,46 @@ document.getElementById("button_delete").addEventListener("click", async () => {
 
     if (!response.ok) {
       const err = await response.json();
-      throw new Error(err.error || "Erreur lors de la suppression");
+      throw new Error(err.error || "Error in delete");
     }
 
     const data = await response.json();
-    alert(data.message || "Produit supprimé !");
+    alert(data.message || "Sucess delete product !");
   } catch (error) {
-    console.error("Erreur:", error.message);
+    console.error("Error:", error.message);
     alert(error.message);
   }
 });
+
+// update product
+document.getElementById("button_update").addEventListener("click", async (e) => {
+  e.preventDefault();
+    const updateType = document.getElementById("updateType").value.trim();
+    const updateQuery = document.getElementById("updateQuery").value.trim();
+    const quantity = document.getElementById("new_quantity").value.trim(); 
+  
+    try {
+      const response = await fetch("/products/update-product", {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ updateType, updateQuery, quantity }), 
+      });
+  
+      if (!response.ok) {
+        const err = await response.json();
+        throw new Error(err.error || "Erreur lors de la mise à jour");
+      }
+  
+      const data = await response.json();
+      alert(data.message || "Produit mis à jour !");
+      // update data 
+      fetchProducts();
+      // reset form update
+      document.getElementById("update-stock-form").reset();
+    } catch (error) {
+      console.error("Erreur:", error.message);
+      alert(error.message);
+    }
+  });
