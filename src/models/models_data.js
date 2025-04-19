@@ -32,6 +32,11 @@ Products.init(
             type: DataTypes.TEXT,
             allowNull: true,
         },
+        quantity: {
+            type: DataTypes.INTEGER,
+            allowNull: true,
+            defaultValue: 0, 
+        },
         productionDate: { 
             type: DataTypes.DATE,
             allowNull: true,

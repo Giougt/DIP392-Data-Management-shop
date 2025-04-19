@@ -29,7 +29,7 @@ h1 {
 
 /* Main Content */
 main {
-    padding: 30px;
+    padding: 20px;
     max-width: 1000px;
     margin: auto;
 }
@@ -102,6 +102,11 @@ th, td {
 
 tbody tr:nth-child(even) {
     background-color: #f2f2f2;
+}
+
+/* for ingredients area text */
+#ingredients {
+    margin-bottom: 10px;
 }
 
 /* Footer */

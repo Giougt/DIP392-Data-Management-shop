@@ -10,6 +10,7 @@ CREATE TABLE IF NOT EXISTS Bakery_Products (
     category ENUM('Bread', 'Pastry', 'Patisserie', 'Snack') NOT NULL,
     price FLOAT NOT NULL,
     ingredients TEXT NULL,
+    quantity INT NOT NULL DEFAULT 0,
     productionDate DATE NOT NULL,
     expirationDate DATE NULL,
     createdAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,

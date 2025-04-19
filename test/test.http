@@ -6,6 +6,7 @@ content-type: application/json
     "category": "Snack",
     "price": 5.49,
     "ingredients": "Flour,Sugar,Butter,Chocolate Chips,Eggs",
+    "quantity": 34,
     "productionDate": "2025-04-05",
     "expirationDate": "2025-09-05"
 }
@@ -20,6 +21,7 @@ content-type: application/json
     "category": "Snack",
     "price": 2.99,
     "ingredients": "Oats,Peanut Butter,Honey,Chia Seeds,Cocoa Powder",
+    "quantity": 4,
     "productionDate": "2025-04-03",
     "expirationDate": "2025-07-03"
 }
@@ -34,6 +36,7 @@ content-type: application/json
     "category": "Snack",
     "price": 3.99,
     "ingredients": "Wheat Flour,Cheddar,Cheese,Butter,Salt,Paprika",
+    "quantity": 5,
     "productionDate": "2025-03-20",
     "expirationDate": "2025-08-20"
 }

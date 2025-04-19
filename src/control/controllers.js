@@ -3,7 +3,7 @@ const { Products } = require("../models/models_data");
 // function for add product POST
 exports.post = async (req, res, next) => {
     try {
-        const { product_name, category, price, ingredients, productionDate, expirationDate } = req.body;
+        const { product_name, category, price, ingredients, quantity, productionDate, expirationDate } = req.body;
 
         // create new product database
         const newProduct = await Products.create({
@@ -11,6 +11,7 @@ exports.post = async (req, res, next) => {
             category,
             price,
             ingredients,
+            quantity,
             productionDate,
             expirationDate,
         });

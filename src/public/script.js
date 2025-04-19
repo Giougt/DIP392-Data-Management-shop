@@ -22,6 +22,7 @@ async function fetchProducts() {
                     <td>${product.category || "-"}</td>
                     <td>${product.price || "-"}</td>
                     <td>${product.ingredients || "-"}</td>
+                    <td>${product.quantity || "-"}</td>
                     <td>${product.productionDate || "-"}</td>
                     <td>${product.expirationDate || "-"}</td>
                 `;
@@ -48,6 +49,7 @@ document.getElementById("add-product-form").addEventListener("submit", async (ev
         category: document.getElementById("category").value,
         price: parseFloat(document.getElementById("price").value),
         ingredients: document.getElementById("ingredients").value,
+        quantity: document.getElementById("quantity").value,
         productionDate: document.getElementById("production-date").value,
         expirationDate: document.getElementById("expiration-date").value || null
     };
