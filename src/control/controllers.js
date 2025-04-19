@@ -65,8 +65,10 @@ exports.getId = async (req, res, next) => {
 };
 
 //DELETE one products
-exports.deleteProduct = async (req, res) => {
-    let { deleteType, deleteQuery } = req.body;
+exports.deleteProduct = async (req, res) => {  
+  // for send data from url and body 
+    const deleteType = req.body.deleteType || req.query.deleteType;
+    let deleteQuery = req.body.deleteQuery || req.query.deleteQuery;
   
     console.log("Reçu pour suppression:", req.body, typeof deleteQuery); // Debug
   

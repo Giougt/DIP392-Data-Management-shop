@@ -46,3 +46,21 @@ GET http://localhost:3000/products/2
 
 ###
 GET http://localhost:3000/products/3
+
+###
+DELETE http://localhost:3000/products/delete-product?deleteType=id&deleteQuery=30
+
+###
+DELETE http://localhost:3000/products/delete-product?deleteType=id&deleteQuery=40
+
+###
+DELETE http://localhost:3000/products/delete-product?deleteType=id&deleteQuery=50
+
+###
+DELETE http://localhost:3000/products/delete-product?deleteType=name&deleteQuery=
+
+###
+DELETE http://localhost:3000/products/delete-product?deleteType=name&deleteQuery=
+
+###
+DELETE http://localhost:3000/products/delete-product?deleteType=name&deleteQuery=
