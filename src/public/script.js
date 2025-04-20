@@ -131,5 +131,27 @@ if (document.body.classList.contains("index")) {
       }
   });
 } else if (document.body.classList.contains("login")) {
-  // code for login.html
+    document.getElementById("login-form").addEventListener("submit", async (e) => {
+        e.preventDefault();
+      
+        const username = document.getElementById("username").value.trim();
+        const password = document.getElementById("password").value.trim();
+      
+        try {
+          const response = await fetch("/products/login", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ username, password })
+          });
+      
+          const data = await response.json();
+      
+          if (!response.ok) throw new Error(data.error);
+      
+          alert("Welcome " + data.username);
+          window.location.href = "/index";
+        } catch (err) {
+          alert(err.message);
+        }
+      });
 }

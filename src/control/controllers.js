@@ -1,4 +1,4 @@
-const { Products } = require("../models/models_data"); 
+const { Products, User } = require("../models/models_data"); 
 
 // function for add product POST
 exports.post = async (req, res, next) => {
@@ -177,5 +177,29 @@ exports.updateProduct = async (req, res) => {
   } catch (error) {
     console.error("Error in update:", error);
     return res.status(500).json({ error: "Error server" });
+  }
+};
+
+// Check value user for connection
+exports.loginUser = async (req, res) => {
+  const { username, password } = req.body;
+
+  try {
+    if (!username || !password) {
+      return res.status(400).json({ error: "Champs manquants" });
+    }
+
+    const user = await User.findOne({ where: { username, password } });
+
+    if (!user) {
+      return res.status(401).json({ error: "Identifiants incorrects" });
+    }
+
+    // Connexion réussie
+    res.status(200).json({ message: "Connexion réussie", username: user.username });
+
+  } catch (error) {
+    console.error("Erreur de connexion:", error);
+    res.status(500).json({ error: "Erreur serveur" });
   }
 };

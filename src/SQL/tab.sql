@@ -54,4 +54,15 @@ CREATE TABLE  IF NOT EXISTS Money_Transactions (
     updatedAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
 
-	select * from Bakery_Products
+-- SQL Query for user connexion data
+CREATE TABLE  IF NOT EXISTS users (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  username VARCHAR(100) NOT NULL UNIQUE,
+  password VARCHAR(100) NOT NULL
+);
+
+INSERT INTO users (username, password) 
+VALUES ('admin', 1234);
+
+	select * from Bakery_Products;
+    select * from users;

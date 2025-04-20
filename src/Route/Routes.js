@@ -5,8 +5,10 @@ const eventController = require("../control/controllers");
 // route GET and POST (data)
 router.get("/", eventController.getAll);
 router.post("/", eventController.post);
+
 // route for search id 
 router.get("/:id", eventController.getId);
+
 // route for delete products
 router.delete("/delete-product", async (req, res) => {
     try {
@@ -17,6 +19,7 @@ router.delete("/delete-product", async (req, res) => {
       res.status(500).json({ error: "Error server" });
     }
   });
+
 //route for update product
 router.put("/update-product", async (req, res) => {
   try {
@@ -27,5 +30,8 @@ router.put("/update-product", async (req, res) => {
     res.status(500).json({ error: "Error server" });
   }
 });
+
+//route for login user 
+router.post("/login", eventController.loginUser);
 
 module.exports = router;

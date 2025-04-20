@@ -67,3 +67,23 @@ DELETE http://localhost:3000/products/delete-product?deleteType=name&deleteQuery
 
 ###
 DELETE http://localhost:3000/products/delete-product?deleteType=name&deleteQuery=
+
+# for test connexion with good values result= 200 OK
+###
+POST http://localhost:3000/products/login
+content-type: application/json
+
+{
+    "username": "admin",
+    "password": "1234"
+}
+
+#for test connexion with wrong values result= 401 Unauthorized
+###
+POST http://localhost:3000/products/login
+content-type: application/json
+
+{
+    "username": "admin",
+    "password": "0000"
+}

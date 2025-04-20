@@ -1,8 +1,6 @@
 const { Model, DataTypes } = require("sequelize");
 const connection = require("../models/db"); 
 
-/* one models per page*/
-
 
 /* model for products*/
 
@@ -40,7 +38,7 @@ Products.init(
         productionDate: { 
             type: DataTypes.DATE,
             allowNull: true,
-            defaultValue: DataTypes.NOW, // Valeur par défaut
+            defaultValue: DataTypes.NOW, 
         },
         expirationDate: { 
             type: DataTypes.DATE,
@@ -176,5 +174,33 @@ Money.init(
     }
 );
 
+/* model for users*/
 
-module.exports = {Products, Stock, Order, Money};
+class User extends Model {}
+
+User.init(
+  {
+    id: {
+      type: DataTypes.INTEGER,
+      autoIncrement: true,
+      primaryKey: true,
+    },
+    username: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      unique: true,
+    },
+    password: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+  },
+  {
+    sequelize: connection,
+    tableName: 'users',
+    timestamps: false,
+  }
+);
+
+
+module.exports = {Products, Stock, Order, Money, User};
