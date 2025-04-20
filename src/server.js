@@ -27,6 +27,7 @@ app.get("/", (req, res) => {
 app.use(express.static("src/public"));  
 
 // Route pour l'accueil
+//modify for  connexion ...
 app.get("/index", (req, res) => {
     res.sendFile(path.join(__dirname, "/public/index.html"));
 });
