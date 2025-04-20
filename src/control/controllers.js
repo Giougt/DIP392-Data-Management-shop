@@ -186,20 +186,19 @@ exports.loginUser = async (req, res) => {
 
   try {
     if (!username || !password) {
-      return res.status(400).json({ error: "Champs manquants" });
+      return res.status(400).json({ error: "Field are missing" });
     }
 
     const user = await User.findOne({ where: { username, password } });
 
     if (!user) {
-      return res.status(401).json({ error: "Identifiants incorrects" });
+      return res.status(401).json({ error: "Data incorrect" });
     }
 
-    // Connexion réussie
-    res.status(200).json({ message: "Connexion réussie", username: user.username });
+    res.status(200).json({ message: "Sucess connect", username: user.username });
 
   } catch (error) {
-    console.error("Erreur de connexion:", error);
-    res.status(500).json({ error: "Erreur serveur" });
+    console.error("Error connexion:", error);
+    res.status(500).json({ error: "Error server" });
   }
 };
