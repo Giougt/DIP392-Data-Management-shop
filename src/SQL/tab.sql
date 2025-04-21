@@ -61,6 +61,19 @@ CREATE TABLE  IF NOT EXISTS users (
   password VARCHAR(100) NOT NULL
 );
 
+-- SQL Query for feedbacks Table
+CREATE TABLE IF NOT EXISTS feedbacks (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  name VARCHAR(100) NOT NULL,
+  message TEXT NOT NULL,
+  rate_add INT NOT NULL,
+  rate_update INT NOT NULL,
+  rate_inventory INT NOT NULL,
+  rate_delete INT NOT NULL,
+  createdAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  updatedAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+);
+
 INSERT INTO users (username, password) 
 VALUES ('admin', 1234);
 

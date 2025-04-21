@@ -202,5 +202,47 @@ User.init(
   }
 );
 
+/*model for feeback*/
 
-module.exports = {Products, Stock, Order, Money, User};
+class Feedback extends Model{}
+
+Feedback.init(
+    {
+        id: {
+            type: DataTypes.INTEGER,
+            autoIncrement: true,
+            primaryKey: true,
+          },
+        name: {
+            type: DataTypes.STRING,
+            allowNull: false,
+          },
+        message: {
+            type: DataTypes.TEXT,
+            allowNull: false,
+          },
+        rate_add: {
+            type: DataTypes.INTEGER,
+            allowNull: false,
+          },
+        rate_update: {
+            type: DataTypes.INTEGER,
+            allowNull: false,
+          },
+        rate_inventory: {
+            type: DataTypes.INTEGER,
+            allowNull: false,
+          },
+        rate_delete: {
+            type: DataTypes.INTEGER,
+            allowNull: false,
+          }
+    },
+    {
+        sequelize: connection,
+        tableName: 'feedbacks',
+        timestamps: true,
+    }
+);
+
+module.exports = {Products, Stock, Order, Money, User, Feedback};

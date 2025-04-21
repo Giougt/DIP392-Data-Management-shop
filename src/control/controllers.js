@@ -1,4 +1,4 @@
-const { Products, User } = require("../models/models_data"); 
+const { Products, User, Feedback } = require("../models/models_data"); 
 
 // function for add product POST
 exports.post = async (req, res, next) => {
@@ -200,5 +200,30 @@ exports.loginUser = async (req, res) => {
   } catch (error) {
     console.error("Error connexion:", error);
     res.status(500).json({ error: "Error server" });
+  }
+};
+
+//catch feedbacks
+exports.sendFeedback = async (req, res) => {
+  const { name, message, ratings } = req.body;
+
+  if (!name || !message || !ratings) {
+    return res.status(400).json({ error: "Champs requis manquants." });
+  }
+
+  try {
+    const feedback = await Feedback.create({
+      name,
+      message,
+      rate_add: ratings.add,
+      rate_update: ratings.update,
+      rate_inventory: ratings.inventory,
+      rate_delete: ratings.delete,
+    });
+
+    res.status(201).json({ message: "Feedback envoyé avec succès !", feedback });
+  } catch (error) {
+    console.error("Erreur lors de l'enregistrement du feedback:", error);
+    res.status(500).json({ error: "Erreur serveur." });
   }
 };

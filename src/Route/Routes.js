@@ -34,4 +34,7 @@ router.put("/update-product", async (req, res) => {
 //route for login user 
 router.post("/login", eventController.loginUser);
 
+//route for feedbacks
+router.post("/feedback",eventController.sendFeedback);
+
 module.exports = router;

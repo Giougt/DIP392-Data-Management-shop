@@ -149,6 +149,7 @@ if (document.body.classList.contains("index")) {
           if (!response.ok) throw new Error(data.error);
       
           alert("Welcome " + data.username);
+          document.getElementById("login-form").reset(); // Reset form
           window.location.href = "/index";
         } catch (err) {
           alert(err.message);

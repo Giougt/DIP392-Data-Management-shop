@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="styles.css" />
+</head>
+<body class="feedback">
+    <div class="feedback-container">
+        <h2>Leave Feedback</h2>
+        <form id="feedback-form">
+          <input type="text" id="name" placeholder="Your Name" required />
+          <textarea id="message" placeholder="Your Message" required></textarea>
+          <h3>Rate the Features:</h3>
+          <div class="rating-group">
+            <label for="rate-add">Add a Product:</label>
+            <select id="rate-add" required>
+              <option value="">--</option>
+              <option value="1">1 / 5</option>
+              <option value="2">2 / 5</option>
+              <option value="3">3 / 5</option>
+              <option value="4">4 / 5</option>
+              <option value="5">5 / 5</option>
+            </select>
+          </div>
+          <div class="rating-group">
+            <label for="rate-update">Update Stock:</label>
+            <select id="rate-update" required>
+              <option value="">--</option>
+              <option value="1">1 / 5</option>
+              <option value="2">2 / 5</option>
+              <option value="3">3 / 5</option>
+              <option value="4">4 / 5</option>
+              <option value="5">5 / 5</option>
+            </select>
+          </div>
+          <div class="rating-group">
+            <label for="rate-inventory">Inventory:</label>
+            <select id="rate-inventory" required>
+              <option value="">--</option>
+              <option value="1">1 / 5</option>
+              <option value="2">2 / 5</option>
+              <option value="3">3 / 5</option>
+              <option value="4">4 / 5</option>
+              <option value="5">5 / 5</option>
+            </select>
+          </div>
+          <div class="rating-group">
+            <label for="rate-delete">Delete Product:</label>
+            <select id="rate-delete" required>
+              <option value="">--</option>
+              <option value="1">1 / 5</option>
+              <option value="2">2 / 5</option>
+              <option value="3">3 / 5</option>
+              <option value="4">4 / 5</option>
+              <option value="5">5 / 5</option>
+            </select>
+          </div>
+          <button type="submit">Send</button>
+        </form>
+        <p id="response-msg"></p>
+      </div>
+      <!-- only for test -->
+      <script>
+        document.getElementById("feedback-form").addEventListener("submit", async (e) => {
+          e.preventDefault();
+          
+          const name = document.getElementById("name").value.trim();
+          const message = document.getElementById("message").value.trim();
+      
+          const ratings = {
+            add: parseInt(document.getElementById("rate-add").value),
+            update: parseInt(document.getElementById("rate-update").value),
+            inventory: parseInt(document.getElementById("rate-inventory").value),
+            delete: parseInt(document.getElementById("rate-delete").value),
+          };
+      
+          try {
+            const response = await fetch("/products/feedback", {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({ name, message, ratings }),
+            });
+      
+            const result = await response.json();
+            document.getElementById("response-msg").textContent = result.message || "Merci pour votre feedback !";
+          } catch (err) {
+            console.error("Erreur:", err);
+            document.getElementById("response-msg").textContent = "Erreur lors de l'envoi du feedback.";
+          }
+        });
+      </script>
+</body>
+</html>
