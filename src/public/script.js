@@ -155,4 +155,36 @@ if (document.body.classList.contains("index")) {
           alert(err.message);
         }
       });
-}
+} else if (document.body.classList.contains("feedback")){
+    document.getElementById("feedback-form").addEventListener("submit", async (e) => {
+        e.preventDefault();
+        
+        const name = document.getElementById("name").value.trim();
+        const message = document.getElementById("message").value.trim();
+    
+        const ratings = {
+          add: parseInt(document.getElementById("rate-add").value),
+          update: parseInt(document.getElementById("rate-update").value),
+          inventory: parseInt(document.getElementById("rate-inventory").value),
+          delete: parseInt(document.getElementById("rate-delete").value),
+        };
+    
+        try {
+          const response = await fetch("/products/feedback", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ name, message, ratings }),
+          });
+    
+          const result = await response.json();
+          document.getElementById("response-msg").textContent = result.message || "Merci pour votre feedback !";
+          document.getElementById("feedback-form").reset(); //reset form
+          setTimeout(() => {
+            document.getElementById("response-msg").textContent = "";
+          }, 15000);
+        } catch (err) {
+          console.error("Erreur:", err);
+          document.getElementById("response-msg").textContent = "Erreur lors de l'envoi du feedback.";
+        }
+      });
+};

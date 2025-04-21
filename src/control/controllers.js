@@ -220,7 +220,6 @@ exports.sendFeedback = async (req, res) => {
       rate_inventory: ratings.inventory,
       rate_delete: ratings.delete,
     });
-
     res.status(201).json({ message: "Feedback envoyé avec succès !", feedback });
   } catch (error) {
     console.error("Erreur lors de l'enregistrement du feedback:", error);
