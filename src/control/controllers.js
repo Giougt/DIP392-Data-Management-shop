@@ -208,7 +208,7 @@ exports.sendFeedback = async (req, res) => {
   const { name, message, ratings } = req.body;
 
   if (!name || !message || !ratings) {
-    return res.status(400).json({ error: "Champs requis manquants." });
+    return res.status(400).json({ error: "Field are missing." });
   }
 
   try {
@@ -220,9 +220,40 @@ exports.sendFeedback = async (req, res) => {
       rate_inventory: ratings.inventory,
       rate_delete: ratings.delete,
     });
-    res.status(201).json({ message: "Feedback envoyé avec succès !", feedback });
+    res.status(201).json({ message: "Feedback sent successfully !", feedback });
   } catch (error) {
-    console.error("Erreur lors de l'enregistrement du feedback:", error);
-    res.status(500).json({ error: "Erreur serveur." });
+    console.error("Error saving feedback:", error);
+    res.status(500).json({ error: "Error server." });
+  }
+};
+
+// POST new user
+exports.registerUser = async (req, res) => {
+  const { username, password, confirmPassword, email, firstname, lastname, country } = req.body;
+
+  // Validation basique
+  if (!username || !password || !confirmPassword) {
+    return res.status(400).json({ error: "Required fields are missing." });
+  }
+
+  if (password !== confirmPassword) {
+    return res.status(400).json({ error: "Passwords do not match." });
+  }
+
+  try {
+    // Création simple de l'utilisateur (sans hash)
+    const user = await User.create({
+      username,
+      password,
+      email,
+      firstname,
+      lastname,
+      country
+    });
+
+    res.status(201).json({ message: "User registered successfully", user });
+  } catch (error) {
+    console.error("Error creating user:", error);
+    res.status(500).json({ error: "Server error." });
   }
 };

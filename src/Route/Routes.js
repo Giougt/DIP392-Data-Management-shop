@@ -37,4 +37,8 @@ router.post("/login", eventController.loginUser);
 //route for feedbacks
 router.post("/feedback",eventController.sendFeedback);
 
+//route for create an account
+router.post('/register', eventController.registerUser);
+
+
 module.exports = router;

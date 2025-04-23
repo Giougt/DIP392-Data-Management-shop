@@ -55,10 +55,15 @@ CREATE TABLE  IF NOT EXISTS Money_Transactions (
 );
 
 -- SQL Query for user connexion data
-CREATE TABLE  IF NOT EXISTS users (
+CREATE TABLE IF NOT EXISTS users (
   id INT AUTO_INCREMENT PRIMARY KEY,
   username VARCHAR(100) NOT NULL UNIQUE,
-  password VARCHAR(100) NOT NULL
+  password VARCHAR(255) NOT NULL,
+  email VARCHAR(150),
+  firstname VARCHAR(100),
+  lastname VARCHAR(100),
+  country VARCHAR(100),
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
 -- SQL Query for feedbacks Table
