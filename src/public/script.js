@@ -1,4 +1,5 @@
 if (document.body.classList.contains("index")) {
+    // code for index.html page
   // GET and display products
   async function fetchProducts() {
       try {
@@ -131,6 +132,7 @@ if (document.body.classList.contains("index")) {
       }
   });
 } else if (document.body.classList.contains("login")) {
+    // code for login page
     document.getElementById("login-form").addEventListener("submit", async (e) => {
         e.preventDefault();
       
@@ -156,6 +158,7 @@ if (document.body.classList.contains("index")) {
         }
       });
 } else if (document.body.classList.contains("feedback")){
+    // code for feedback page
     document.getElementById("feedback-form").addEventListener("submit", async (e) => {
         e.preventDefault();
         
@@ -188,10 +191,10 @@ if (document.body.classList.contains("index")) {
         }
       });
 } else if (document.body.classList.contains("create")){
-    // code for generate list country
+    // code for create_account page 
     const countrySelect = document.getElementById("country");
     const regionNames = new Intl.DisplayNames(['fr'], { type: 'region' });
-
+    // code for generate list country
     const countryCodes = [
       "AF","AL","DZ","AS","AD","AO","AI","AQ","AG","AR","AM","AW","AU","AT","AZ","BS","BH","BD","BB","BY",
       "BE","BZ","BJ","BM","BT","BO","BA","BW","BR","BN","BG","BF","BI","CV","KH","CM","CA","CF","TD","CL",
@@ -213,17 +216,16 @@ if (document.body.classList.contains("index")) {
     });
     //code for create an account and check password
     document.querySelector("form").addEventListener("submit", async function (e) {
-        e.preventDefault(); // Empêche le rechargement par défaut
+        e.preventDefault(); // cancel default reload
       
         const password = document.getElementById("password").value;
         const confirmPassword = document.getElementById("confirm-password").value;
       
         if (password !== confirmPassword) {
-          alert("Les mots de passe ne correspondent pas !");
+          alert("Password are different !");
           return;
         }
       
-        // Préparation des données à envoyer
         const data = {
           username: document.getElementById("username").value,
           password,
@@ -246,14 +248,15 @@ if (document.body.classList.contains("index")) {
           const result = await response.json();
       
           if (response.ok) {
-            alert("Compte créé avec succès !");
+            alert("Sucess create your account !");
             this.reset();
+            window.location.href="/login.html";
           } else {
-            alert("Erreur : " + result.error);
+            alert("Error : " + result.error);
           }
         } catch (error) {
-          console.error("Erreur réseau :", error);
-          alert("Erreur serveur ou réseau. Réessaie plus tard.");
+          console.error("Error network :", error);
+          alert("Error server or network. Try later");
         }
       });
 };

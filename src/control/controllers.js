@@ -241,7 +241,6 @@ exports.registerUser = async (req, res) => {
   }
 
   try {
-    // Création simple de l'utilisateur (sans hash)
     const user = await User.create({
       username,
       password,

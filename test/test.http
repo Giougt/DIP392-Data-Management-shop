@@ -88,6 +88,62 @@ content-type: application/json
     "password": "0000"
 }
 
-#for feedback form test
+#for feedback form test (code 201 Created)
+###
+POST http://localhost:3000/products/feedback
+content-type: application/json
 
-#for create an account 
+{
+  "name": "leo",
+  "message": "Good to use",
+  "ratings": {
+    "add": 1,
+    "update": 2,
+    "inventory": 3,
+    "delete": 4
+  }
+}
+
+###
+POST http://localhost:3000/products/feedback
+content-type: application/json
+
+{
+  "name": "camille",
+  "message": "I love this website",
+  "ratings": {
+    "add": 5,
+    "update": 5,
+    "inventory": 5,
+    "delete": 5
+  }
+}
+
+#for create an account (code 201 Created)
+###
+POST http://localhost:3000/products/register
+content-type: application/json
+
+{
+    "username": "leo",
+    "password": "1ytRb#34ni",
+    "confirmPassword": "1ytRb#34ni",
+    "email": "leo.lv@gmail.com",
+    "firstname": "leo",
+    "lastname": "lecamus",
+    "country": "France"
+}
+
+###
+POST http://localhost:3000/products/register
+content-type: application/json
+
+{
+    "username": "camille",
+    "password": "1UtR534na",
+    "confirmPassword": "1UtR534na",
+    "email": "camille.lv@gmail.com",
+    "firstname": "camille",
+    "lastname": "Leboissier",
+    "country": "France"
+}
