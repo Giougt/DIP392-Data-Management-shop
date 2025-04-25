@@ -438,3 +438,89 @@ body.create {
 .create button:hover {
   background-color: #1a5edb;
 }
+
+/*style CSS for forgot_password.html */
+
+body.forgot {
+  margin: 0;
+  height: 100vh;
+  background: linear-gradient(135deg, #6a11cb, #2575fc);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body.forgot .forgot-container {
+  background-color: white;
+  padding: 40px;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  width: 100%;
+  max-width: 400px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+body.forgot h2 {
+  text-align: center;
+  margin-bottom: 30px;
+  color: #333;
+  width: 100%;
+}
+
+body.forgot form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+body.forgot label {
+  align-self: flex-start;
+  margin-bottom: 5px;
+  color: #555;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+body.forgot input[type="text"],
+body.forgot input[type="password"] {
+  width: 100%;
+  padding: 12px 15px;
+  margin: 10px 0 20px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 16px;
+}
+
+body.forgot button {
+  width: 100%;
+  padding: 12px;
+  background-color: #2575fc;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+body.forgot button:hover {
+  background-color: #1a5edb;
+}
+
+body.forgot p {
+  margin-top: 15px;
+  font-size: 14px;
+}
+
+body.forgot a {
+  color: #2575fc;
+  text-decoration: none;
+}
+
+body.forgot a:hover {
+  text-decoration: underline;
+}
