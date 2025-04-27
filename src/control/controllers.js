@@ -256,3 +256,37 @@ exports.registerUser = async (req, res) => {
     res.status(500).json({ error: "Server error." });
   }
 };
+
+// POST new password
+exports.newPassword = async (req, res) => {
+  try {
+    const { username, newPassword, confirmPassword } = req.body;
+
+    // Vérification que tous les champs sont présents
+    if (!username || !newPassword || !confirmPassword) {
+      return res.status(400).json({ message: 'All fields are required.' });
+    }
+
+    // Vérification que les deux mots de passe sont identiques
+    if (newPassword !== confirmPassword) {
+      return res.status(400).json({ message: 'Passwords do not match.' });
+    }
+
+    // Recherche de l'utilisateur par son username
+    const user = await User.findOne({ where: { username } });
+
+    if (!user) {
+      return res.status(404).json({ message: 'User not found.' });
+    }
+
+    // Mise à jour du mot de passe
+    user.password = newPassword;
+    await user.save();
+
+    // Réponse succès
+    res.status(200).json({ message: 'Password updated successfully.' });
+  } catch (error) {
+    console.error('Error updating password:', error);
+    res.status(500).json({ message: 'Internal server error.' });
+  }
+};

@@ -259,4 +259,35 @@ if (document.body.classList.contains("index")) {
           alert("Error server or network. Try later");
         }
       });
-};
+}else if (document.body.classList.contains("forgot")){
+      const form = document.getElementById('change-password-form');
+    
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+    
+        const username = document.getElementById('username').value;
+        const newPassword = document.getElementById('new-password').value;
+        const confirmPassword = document.getElementById('confirm-password').value;
+    
+        try {
+          const response = await fetch('/products/reset_password', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ username, newPassword, confirmPassword }),
+          });
+    
+          const data = await response.json();
+    
+          if (response.ok) {
+            alert(data.message);
+            window.location.href = 'login.html'; // Redirige vers login si succès
+          } else {
+            alert(data.message);
+          }
+        } catch (error) {
+          console.error('Error:', error);
+          alert('An error occurred.');
+        }
+      });
+  }
+    

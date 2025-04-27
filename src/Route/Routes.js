@@ -40,5 +40,7 @@ router.post("/feedback",eventController.sendFeedback);
 //route for create an account
 router.post('/register', eventController.registerUser);
 
+//route for reset password
+router.post('/reset_password', eventController.newPassword);
 
 module.exports = router;
