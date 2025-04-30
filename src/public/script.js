@@ -280,7 +280,7 @@ if (document.body.classList.contains("index")) {
     
           if (response.ok) {
             alert(data.message);
-            window.location.href = 'login.html'; // Redirige vers login si succès
+            window.location.href = 'login.html'; // if sucess open login page
           } else {
             alert(data.message);
           }

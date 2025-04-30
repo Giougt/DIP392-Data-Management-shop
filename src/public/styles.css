@@ -163,7 +163,22 @@ body.index {
     border: 1px solid #ccc;
     border-radius: 6px;
   }
+  body.index .top-navbar ul {
+    justify-content: center;
+    position: relative;
+  }
   
+  /* Positionner le logout à droite */
+  body.index .top-navbar ul li.logout-link {
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+  
+  /* Style du lien logout */
+  body.index .top-navbar ul li.logout-link a {
+    background-color: red;
+  }
 
 /*style CSS for login.html */
 
