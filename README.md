@@ -95,3 +95,8 @@ Use file test.http for send requests.
 - ⚡ **JavaScript** – Core logic and dynamic interactivity
 - 🎨 **CSS** – Custom styling and layout control
 - 🗄️ **MySQL** – Reliable and structured relational database
+
+
+## Video presentation:
+
+https://drive.google.com/file/d/1k_SPIQhpoLIH1eLNKraE02QuMfBq4f1b/view?usp=drive_link
