@@ -14,7 +14,6 @@ Developed for bakers in mid-sized French cities, the system offers:
 - Smart restocking alerts and supplier order generation
 - Waste reduction through accurate stock tracking
 - Improved daily operations and organization for bakery staff
-
 ---
 
 ## ⚙️ Setup and Run Instructions
@@ -24,7 +23,6 @@ Developed for bakers in mid-sized French cities, the system offers:
 - Node.js (v14.0.0 or higher) and npm (v6.0.0 or higher) installed  
 - MySQL installed and running locally (or remote MySQL server access)  
 - Git installed on your system  
-
 ---
 
 ### 1. Clone the Repository
@@ -91,11 +89,9 @@ Use file test.http for send requests.
 | Clément CROUAN    | 250AEB001    | Front-End Developer  |
 
 
-
 ## Technology Use
 
 - 📦 **npm** – Dependency management and script automation
 - ⚡ **JavaScript** – Core logic and dynamic interactivity
 - 🎨 **CSS** – Custom styling and layout control
 - 🗄️ **MySQL** – Reliable and structured relational database
-- 
